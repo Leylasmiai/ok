@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Website</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#services">Upload</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Training</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Prediction</a></li>
+                   
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-heading text-uppercase">𝐖𝐄𝐋𝐂𝐎𝐌𝐄
+                    𝐓𝐎 𝐎𝐔𝐑 𝐖𝐄𝐁𝐒𝐈𝐓𝐄!</div>
+                <p style="color: rgb(191, 187, 187);"> "Upload your file, and leave the rest to us!"<br>
+                    "Our website will analyze your data and perform the tasks you specify."<br>
+                    "Sit back and let us handle the work, hassle-free."</p>
+                    <br><br><br>
+                    <a class="btn btn-primary btn-xl text-center text-uppercase"  href="#services">Let's Start </a>
+            </div>
+        </header>
+        
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Upload</h2>
+                    <h3 class="section-subheading text-muted">Upload and Split your Dataset</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <main class="flex-grow container mx-auto flex justify-center items-center">
+                            <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+                                <span class="fa-stack fa-2x ml-2">
+                                    <i class="fas fa-circle fa-stack-2x text-gray-500"></i>
+                                    <i class="fas fa-file-upload fa-stack-1x fa-inverse text-white-500"></i>
+                                </span>
+                                <div class="flex justify-center items-center mb-4">
+                                    <label for="recordingInput" class="text-gray-700 mr-2 text-center">Select a file or drag and drop here</label>
+                                    <input type="file" id="recordingInput" class="hidden">
+                                </div>
+                                <label for="recordingInput" class="block w-full py-2 px-4 bg-blue-500 text-white text-center rounded-md cursor-pointer hover:bg-blue-600 transition duration-300 ease-in-out">Select File</label>
+                                <p class="mt-2 text-gray-500" id="fileName"></p>
+                                <button onclick="splitData()" class="mt-4 block w-full py-2 px-4 bg-green-500 text-white text-center rounded-md cursor-pointer hover:bg-gray-600 transition duration-300 ease-in-out">Split Data</button>
+                            </div>
+                        </main>
+                        <div class="container mx-auto mt-8" id="resultContainer">
+                            <h2 class="text-xl font-semibold mb-4">Result</h2>
+                            <table class="w-full border-collapse border border-gray-300">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="border border-gray-300 px-4 py-2">Training Data</th>
+                                        <th class="border border-gray-300 px-4 py-2">Testing Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+         
+          
+       
+     
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-start text-center">Copyright &copy; Your Website 2024</div>
+                    <div class="col-lg-6 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      
+        </div>
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"> 
+           <script>
+            function splitData() {
+                const fileInput = document.getElementById('recordingInput');
+                const file = fileInput.files[0];
+    
+                const reader = new FileReader();
+    
+                reader.onload = function(event) {
+                    const data = event.target.result.split('\n');
+                    const splitIndex = Math.floor(data.length * 0.8);
+                    const trainingData = data.slice(0, splitIndex);
+                    const testingData = data.slice(splitIndex);
+    
+                    const resultBody = document.getElementById('resultBody');
+                    resultBody.innerHTML = `
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">${trainingData.join('<br>')}</td>
+                            <td class="border border-gray-300 px-4 py-2">${testingData.join('<br>')}</td>
+                        </tr>
+                    `;
+                };
+    
+                reader.onerror = function() {
+                    console.error('Error reading the file');
+                };
+    
+                reader.readAsText(file);
+            }
+        </script>
+    <script>
+        function splitData() {
+            const recordingInput = document.getElementById('recordingInput');
+            const fileName = document.getElementById('fileName');
+            const resultBody = document.getElementById('resultBody');
+
+            const [file] = recordingInput.files;
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.readAsText(file);
+
+            reader.onload = function(event) {
+                const fileContent = event.target.result;
+                const fileType = file.name.split('.').pop().toLowerCase();
+
+                let lines;
+                if (fileType === 'csv') {
+                    lines = fileContent.split('\n').map(line => line.split(','));
+                } else {
+                    lines = fileContent.split('\n').map(line => [line.trim()]);
+                }
+
+                const dataLength = lines.length;
+                const halfIndex = Math.ceil(dataLength / 2);
+
+                const trainingData = lines.slice(0, halfIndex).map(row => row.join(',')).join('\n');
+                const testingData = lines.slice(halfIndex).map(row => row.join(',')).join('\n');
+
+                const resultHTML = `
+                    <tr>
+                        <td class="border border-gray-300 px-4 py-2">${trainingData}</td>
+                        <td class="border border-gray-300 px-4 py-2">${testingData}</td>
+                    </tr>
+                `;
+
+                resultBody.innerHTML = resultHTML;
+            };
+    </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
